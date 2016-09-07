@@ -44,7 +44,7 @@ public class SinglePokemonReviecer extends BroadcastReceiver {
 
     private void loadData(Context ctx) {
         try {
-            SinglePokemon data = HomeService.fetchData.fetchSinglePokemon();
+             SinglePokemon data = HomeService.fetchData.fetchSinglePokemon();
             if(data != null) {
                 Toast.makeText(
                         ctx,
@@ -56,8 +56,14 @@ public class SinglePokemonReviecer extends BroadcastReceiver {
                         data.isFailed(),
                         Toast.LENGTH_LONG
                 ).show();
+            } else {
+                Toast.makeText(ctx, "Failed to fetch pokemon data", Toast.LENGTH_LONG);
+                Log.e("SINGLE", "Data is null");
             }
-        } catch (RemoteException e) { }
+        } catch (RemoteException e) {
+            Toast.makeText(ctx, "Failed to fetch pokemon data", Toast.LENGTH_LONG);
+            Log.e("SINGLE", e.toString());
+        }
     }
 
 }
